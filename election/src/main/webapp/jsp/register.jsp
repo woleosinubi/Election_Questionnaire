@@ -28,7 +28,7 @@ try
 		party=request.getParameter("txt_party"); //txt_party
 		proffesion=request.getParameter("txt_proffesion"); //txt_proffesion
 		
-		PreparedStatement pstmt=null; //create statement
+		PreparedStatement pstmt=null; //create statement for Login credentials
 		
 		pstmt=con.prepareStatement("insert into login(firstname,lastname,email,password) values(?,?,?,?)");//sql insert query
 		pstmt.setString(1,firstname);
@@ -36,7 +36,7 @@ try
 		pstmt.setString(3,email);
 		pstmt.setString(4,password);
 		
-		PreparedStatement pstmt1=null; //create statement
+		PreparedStatement pstmt1=null; //create statement for candidates
 		pstmt1=con.prepareStatement("insert into candidates(fullname,age,email,party,proffesion) values(?,?,?,?,?)");//sql insert query
 		pstmt1.setString(1,fullname);
 		pstmt1.setString(2,age);
@@ -44,15 +44,15 @@ try
 		pstmt1.setString(4,party);
 		pstmt1.setString(5,proffesion);
 		
-		PreparedStatement pstmt2=null; //create statement
+		PreparedStatement pstmt2=null; //create statement for scoring candidates
 		pstmt2=con.prepareStatement("insert into scores(email) values(?)");//sql insert query
 		pstmt2.setString(1,email);
 		
 		
 		
-		pstmt.executeUpdate(); //execute query
-		pstmt1.executeUpdate(); //execute query
-		pstmt2.executeUpdate(); //execute query
+		pstmt.executeUpdate(); //execute query Login
+		pstmt1.executeUpdate(); //execute query Candidate
+		pstmt2.executeUpdate(); //execute query Score
 		
 		request.setAttribute("successMsg","Register Successfully...! Please login"); //register success messeage
 
@@ -158,13 +158,13 @@ catch(Exception e)
 				   
                     <div class="form-row">
                         <label>
-                            <span>Firstname</span>
+                            <span>First Name</span>
                             <input type="text" name="txt_firstname" id="fname" placeholder="enter firstname">
                         </label>
                     </div>
 					<div class="form-row">
                         <label>
-                            <span>Lastname</span>
+                            <span>Last Name</span>
                             <input type="text" name="txt_lastname" id="lname" placeholder="enter lastname">
                         </label>
                     </div>
